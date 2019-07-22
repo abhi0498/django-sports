@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import dj_database_url
 import os
 import django_heroku
 
@@ -26,7 +27,7 @@ SECRET_KEY = 'nh$_f1ga$7+)(sqb^$m4-q-4=6cn^^#ai@!lrhyfdpjtxh6*2r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-college-sports.herokuapp.com/']
 
 
 # Application definition
@@ -122,5 +123,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+prod_db = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
 # Activate Django-Heroku.
 django_heroku.settings(locals())
